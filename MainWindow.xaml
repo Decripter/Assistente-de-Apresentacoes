@@ -169,7 +169,7 @@
                 <Button x:Name="AtualizarListaTelas" Content="Atualizar" HorizontalAlignment="Right" Margin="0,6,140,0" VerticalAlignment="Top" Click="AtualizarListaTelas_Click" Width="63" Height="20"/>
             </Grid>
         </GroupBox>
-        <Label x:Name="AtualizacaoDisponivel" Content="Existe uma atualização disponível! - Baixar atualização" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,15,0,0" Foreground="#FFF70808" FontSize="18" Cursor="Hand" MouseDown="atualizacaoDisponivel_MouseDown" Visibility="Hidden"/>
+        <Label x:Name="AtualizacaoDisponivel" Content="Baixar atualização" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Foreground="#FFF70808" FontSize="18" Cursor="Hand" MouseDown="atualizacaoDisponivel_MouseDown" Visibility="Hidden"/>
         <GroupBox Grid.ColumnSpan="2" Header="Edição/Exibição:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="359" Height="49" Margin="0,0,244,0" BorderBrush="#FF17F402">
             <Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="210">
                 <Grid.ColumnDefinitions>

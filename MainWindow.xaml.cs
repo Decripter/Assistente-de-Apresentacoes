@@ -34,7 +34,7 @@ namespace Assistente_de_Apresentações
         Boolean isPlayng = false;
 
         FullscreenWindow fullscreenWindow = new();
-        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.2.zip?raw=true";
+        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.3.zip?raw=true";
         readonly String defaultMedia = "media.png";
 
 
