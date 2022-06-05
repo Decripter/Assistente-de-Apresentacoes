@@ -5,32 +5,179 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assistente_de_Apresentações"
         mc:Ignorable="d"
-        Title="Assistente de Apresentações" Height="450" Width="850" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="Assistente de Apresentações" Height="450" Width="850" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize" Icon="/media - Copia.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Margin="0,79,0,0" Grid.ColumnSpan="2">
-            <TabControl Height="389" VerticalAlignment="Top" Margin="0,-44,0,0">
+            <TabControl Height="399" VerticalAlignment="Top" Margin="0,-44,0,0">
                 <TabItem x:Name="ImgTbView" Header="Imagens">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFCBECFF">
+
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="31,19,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg1" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement1" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="231,19,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg2" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement2" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="433,19,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg3" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement3" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="638,19,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg4" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement4" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="31,151,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg5" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement5" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="231,151,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg6" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement6" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="433,151,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg7" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement7" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="638,152,0,0" VerticalAlignment="Top">
+                            <Border x:Name="BorderImg8" Background="#FF09A634" />
+                            <MediaElement x:Name="mediaElement8" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="MediaElementImage_MouseDown" Source="/media.png">
+                                <MediaElement.OpacityMask>
+                                    <ImageBrush ImageSource="/media.png"/>
+                                </MediaElement.OpacityMask>
+                            </MediaElement>
+                        </Grid>
+                        <Button x:Name="ResetarImagem" Content="Remover Imagen" HorizontalAlignment="Center" Margin="0,285,0,0" VerticalAlignment="Top" Width="129" FontSize="15" Click="ResetarImagem_Click"/>
+                    </Grid>
                 </TabItem>
-                <TabItem x:Name="VidTabView" Header="Vídeos">
-                    <Grid Background="#FFE5E5E5" HorizontalAlignment="Stretch">
-                        <Slider Name="timelineSlider" Margin="0,0,15,15" Width="596" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                        <Button x:Name="PlayPauseButton" Content="Play" HorizontalAlignment="Left" Margin="25,0,0,15" VerticalAlignment="Bottom" Click="PlayPause" Width="84"/>
-                        <Button x:Name="stop" Content="Stop" HorizontalAlignment="Left" Margin="150,0,0,15" VerticalAlignment="Bottom" Click="Stop" Width="63"/>
+                <TabItem x:Name="VidTabView" Header="Vídeos" Margin="0,-2,0,0">
+                    <Grid Background="#FFE5E5E5" Height="371">
+                        <Grid Background="#FFE2CBFF">
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="31,19,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid1" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement1" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="231,19,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid2" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement2" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="433,19,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid3" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement3" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="638,19,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid4" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement4" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="31,151,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid5" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement5" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="231,151,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid6" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement6" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="433,151,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid7" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement7" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+                            <Grid Width="165" Height="95" HorizontalAlignment="Left"  Margin="638,151,0,0" VerticalAlignment="Top">
+                                <Border x:Name="BorderVid8" Background="#FF09A634" />
+                                <MediaElement x:Name="videoElement8" HorizontalAlignment="Center" Height="90" Margin="0,0,0,0" VerticalAlignment="Center" Width="160" Position="00:00:00" MouseDown="videoElement_MouseDown" Source="/media.png" IsMuted="True" Volume="0">
+                                    <MediaElement.OpacityMask>
+                                        <ImageBrush ImageSource="/media.png"/>
+                                    </MediaElement.OpacityMask>
+                                </MediaElement>
+                            </Grid>
+
+                        </Grid>
+                        <GroupBox HorizontalAlignment="Center" Height="78" Header="Controles de Vídeo:" Margin="0,266,0,0" VerticalAlignment="Top" Width="824" BorderBrush="#FF0081F4">
+                            <Grid Height="46" HorizontalAlignment="Stretch">
+                                <ProgressBar Height="10" Margin="0,0,8,15" Width="580" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <Button x:Name="PlayPauseButton" Content="Play" HorizontalAlignment="Left" Margin="25,0,0,10" VerticalAlignment="Bottom" Click="PlayPause" Width="84"/>
+                                <Button x:Name="stop" Content="Stop" HorizontalAlignment="Left" Margin="150,0,0,10" VerticalAlignment="Bottom" Click="Stop" Width="63"/>
+                            </Grid>
+                        </GroupBox>
                     </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
-        <GroupBox Grid.ColumnSpan="2" Header="Monitores:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Height="51" Margin="0,0,5,0">
+        <GroupBox Grid.ColumnSpan="2" Header="Monitores Externos:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Height="51" Margin="0,0,5,0" BorderBrush="#FF17F402">
             <Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="210">
-                <ComboBox x:Name="selectMonitors" HorizontalAlignment="Right" Margin="0,5,10,0"   VerticalAlignment="Top" Width="120" SelectionChanged="selectMonitors_SelectionChanged" Height="22"/>
+                <ComboBox x:Name="SelectMonitors" HorizontalAlignment="Right" Margin="0,5,10,0"   VerticalAlignment="Top" Width="120" SelectionChanged="SelectMonitors_SelectionChanged" Height="22"/>
                 <Button x:Name="AtualizarListaTelas" Content="Atualizar" HorizontalAlignment="Right" Margin="0,6,140,0" VerticalAlignment="Top" Click="AtualizarListaTelas_Click" Width="63" Height="20"/>
             </Grid>
         </GroupBox>
         <Label x:Name="AtualizacaoDisponivel" Content="Existe uma atualização disponível! - Baixar atualização" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,15,0,0" Foreground="#FFF70808" FontSize="18" Cursor="Hand" MouseDown="atualizacaoDisponivel_MouseDown" Visibility="Hidden"/>
+        <GroupBox Grid.ColumnSpan="2" Header="Edição/Exibição:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="359" Height="49" Margin="0,0,244,0" BorderBrush="#FF17F402">
+            <Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="210">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="23*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="ExibirEditarCheckbox" Content="Exibir Imagens e Vídeos" HorizontalAlignment="Left" Margin="32,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2" Click="ExibirEditarCheckbox_Click"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

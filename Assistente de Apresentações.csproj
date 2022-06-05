@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="play.png" />
+    <None Remove="media - Copia.png" />
+    <None Remove="media.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="play.png" />
+    <Resource Include="media - Copia.png" />
+    <Resource Include="media.png" />
   </ItemGroup>
 
 </Project>

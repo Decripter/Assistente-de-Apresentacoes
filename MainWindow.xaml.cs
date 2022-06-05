@@ -1,11 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Diagnostics;
-
 using System.ComponentModel;
 using System.Net.Http;
 using System.Net;
 using System.Threading;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +24,7 @@ using WpfScreenHelper.Enum;
 
 namespace Assistente_de_Apresentações
 {
-    
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -34,24 +33,23 @@ namespace Assistente_de_Apresentações
 
         Boolean isPlayng = false;
 
-        FullscreenWindow fullscreenWindow = new FullscreenWindow();
-        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.1.zip?raw=true";
+        FullscreenWindow fullscreenWindow = new();
+        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.2.zip?raw=true";
+        readonly String defaultMedia = "media.png";
 
 
 
-
-
-    public MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
-        public void Select_Video()
+        public String Select_Video()
         {
             // Configure open file dialog box
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog dlg = new();
             dlg.DefaultExt = ".mp4"; // Default file extension
-            dlg.Filter = "Vídeos (.mp4)|*.mp4"; // Filter files by extension
-            
+            dlg.Filter = "Vídeos|*.mp4;*.avi;*.wmv;*.webm;"; // Filter files by extension
+
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
@@ -61,16 +59,18 @@ namespace Assistente_de_Apresentações
             {
                 // Open document
                 string filename = dlg.FileName;
-                fullscreenWindow.Play_Video(filename);
-            }
-        }
 
+                return filename;
+            }
+            else { return ""; }
+        }
+        
         public String Select_Image()
         {
             // Configure open file dialog box
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog dlg = new();
             dlg.DefaultExt = ".jpg"; // Default file extension
-            dlg.Filter = "Imagens (.jpg)|*.jpg"; // Filter files by extension
+            dlg.Filter = "Imagens|*.jpg;*.jpeg;*.png;*.webp;*.bmp;*.gif"; // Filter files by extension
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
@@ -80,36 +80,53 @@ namespace Assistente_de_Apresentações
             {
                 // Open document
                 string filename = dlg.FileName;
-               
+
                 return filename;
             }
-            else { return " "; }
+            else { return ""; }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GetTelas();
+            ChangeBorderColors();
 
-            //Select_Video();
+            //fullscreenWindow.Show();
 
-            
+            mediaElement1.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement2.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement3.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement4.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement5.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement6.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement7.Source = new Uri(defaultMedia, UriKind.Relative);
+            mediaElement8.Source = new Uri(defaultMedia, UriKind.Relative);
+
+            videoElement1.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement2.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement3.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement4.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement5.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement6.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement7.Source = new Uri(defaultMedia, UriKind.Relative);
+            videoElement8.Source = new Uri(defaultMedia, UriKind.Relative);
             GetUpdate();
 
 
 
             if (Screen.AllScreens.Length > 1)
             {
-
-            fullscreenWindow.Left = Screen.AllScreens[1].WorkingArea.Left;
-            fullscreenWindow.Top = Screen.AllScreens[1].WorkingArea.Top; 
-            fullscreenWindow.Show();
-            fullscreenWindow.WindowState = WindowState.Maximized;
+                
+                fullscreenWindow.Left = Screen.AllScreens[1].WorkingArea.Left;
+                fullscreenWindow.Top = Screen.AllScreens[1].WorkingArea.Top;
+                fullscreenWindow.Show();
+                fullscreenWindow.WindowState = WindowState.Maximized;
             }
-            
-            
+
+
         }
         async void GetUpdate()
         {
-              HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient();
 
             try
             {
@@ -126,29 +143,17 @@ namespace Assistente_de_Apresentações
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
-                
+
             }
         }
-       
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             fullscreenWindow.Close();
 
         }
 
-        private void Select_View_Image(Image imageBox)
-        {
-            BitmapImage tmpBm = new BitmapImage();
-            tmpBm.BeginInit();
-            tmpBm.UriSource = new Uri(Select_Image(), UriKind.Relative);
-            tmpBm.EndInit();
-            imageBox.Stretch = Stretch.Fill;
-            imageBox.Source = tmpBm;
-            //TODO trocar os imagebox por MediaElement
-            //TODO deixar apenas uma guia para imagens e videos
-            fullscreenWindow.Play_Video(tmpBm.UriSource.ToString());
-            
-        }
+       
 
         private void Midia_1_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -173,7 +178,7 @@ namespace Assistente_de_Apresentações
         }
 
         private void Stop(object sender, RoutedEventArgs e)
-        {   
+        {
             fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Stop;
             fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Play;
             Thread.Sleep(100);
@@ -182,6 +187,7 @@ namespace Assistente_de_Apresentações
 
             isPlayng = false;
             PlayPauseButton.Content = "Play";
+
         }
 
         private void AtualizarListaTelas_Click(object sender, RoutedEventArgs e)
@@ -190,50 +196,209 @@ namespace Assistente_de_Apresentações
         }
         private void GetTelas()
         {
-            selectMonitors.Items.Clear();
-            for (int i = 0; i < Screen.AllScreens.Length; i++)
+            SelectMonitors.Items.Clear();
+            if(Screen.AllScreens.Length > 1)
             {
-                String name = Screen.AllScreens[i].DeviceName;
-                name = name.Substring(4,name.Length-4);
-                selectMonitors.Items.Add(name);
+                for (int i = 1; i < Screen.AllScreens.Length; i++)
+                {
+                    String name = Screen.AllScreens[i].DeviceName;
+                    name = name.Substring(4, name.Length - 4);
+                    SelectMonitors.Items.Add(name);
+                }
+                SelectMonitors.SelectedIndex = 0;
+
             }
             
+
         }
 
-        private void selectMonitors_Selected(object sender, RoutedEventArgs e)
-        {
-        }
+       
 
-        private void selectMonitors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectMonitors_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index  = selectMonitors.SelectedIndex;
-            if(index > 1)
+            int index = SelectMonitors.SelectedIndex;
+            if (index > 0)
             {
 
                 fullscreenWindow.Hide();
-            fullscreenWindow.Left = 0;
-            fullscreenWindow.Top = 0;
-            fullscreenWindow.Left = Screen.AllScreens[index].WorkingArea.Left;
-            fullscreenWindow.Top = Screen.AllScreens[index].WorkingArea.Top;
-            fullscreenWindow.Show();
-            fullscreenWindow.WindowState = WindowState.Maximized;
+                fullscreenWindow.Left = 0;
+                fullscreenWindow.Top = 0;
+                fullscreenWindow.Left = Screen.AllScreens[index].WorkingArea.Left;
+                fullscreenWindow.Top = Screen.AllScreens[index].WorkingArea.Top;
+                fullscreenWindow.Show();
+                fullscreenWindow.WindowState = WindowState.Maximized;
             }
 
         }
-        private void Element_MediaOpened(object sender, EventArgs e)
-        {
-            timelineSlider.Maximum = fullscreenWindow.videoPlayer.NaturalDuration.TimeSpan.TotalMilliseconds;
-        }
-
-        private void MediaTimeChanged(object sender, EventArgs e)
-        {
-            timelineSlider.Value = fullscreenWindow.videoPlayer.Position.TotalMilliseconds;
-        }
+       
+        
 
         private void atualizacaoDisponivel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Process.Start("cmd", "/c start "+ newVersionUrl);
+            System.Diagnostics.Process.Start("cmd", "/c start " + newVersionUrl);
 
         }
+
+        
+        private void MediaElementImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MediaElement media = (MediaElement)sender;
+
+            if (ExibirEditarCheckbox.IsChecked == true & media.Source != new Uri(defaultMedia, UriKind.Relative))
+            {
+                fullscreenWindow.videoPlayer.Source = media.Source;
+                fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Play;
+
+            }
+            if (ExibirEditarCheckbox.IsChecked == false)
+            {
+                SetImages(media);
+
+            }
+        }
+        
+        private void SetImages(MediaElement mediaElement)
+        {
+
+            var media = Select_Image();
+            if (media == "")
+            {
+                media = defaultMedia;
+            }
+            else
+            {
+                mediaElement.Source = new Uri(media, UriKind.Relative);
+            }
+            
+        }
+        private void videoElement_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MediaElement media = (MediaElement)sender;
+
+            if (ExibirEditarCheckbox.IsChecked == true & media.Source != new Uri(defaultMedia, UriKind.Relative))
+            {   
+                fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Stop;
+                fullscreenWindow.videoPlayer.Source = media.Source;
+                AnimarMiniaturaVideos(media);
+            }
+            if (ExibirEditarCheckbox.IsChecked == false)
+            {
+                SetVideos(media);
+                media.LoadedBehavior = MediaState.Stop;
+
+            }
+        }
+        
+        private void SetVideos(MediaElement mediaElement)
+        {
+
+            var media = Select_Video();
+            if (media == "")
+            {
+                media = defaultMedia;
+
+            }
+            else
+            {
+                mediaElement.Source = new Uri(media, UriKind.Relative);
+            }
+
+        }
+
+        private void ExibirEditarCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+           ChangeBorderColors();
+        }
+        private void ChangeBorderColors()
+        {
+            if(ExibirEditarCheckbox.IsChecked == true)
+            {
+
+                BorderImg1.Background = new SolidColorBrush(Colors.Red);
+                BorderImg2.Background = new SolidColorBrush(Colors.Red);
+                BorderImg3.Background = new SolidColorBrush(Colors.Red);
+                BorderImg4.Background = new SolidColorBrush(Colors.Red);
+                BorderImg5.Background = new SolidColorBrush(Colors.Red);
+                BorderImg6.Background = new SolidColorBrush(Colors.Red);
+                BorderImg7.Background = new SolidColorBrush(Colors.Red);
+                BorderImg8.Background = new SolidColorBrush(Colors.Red);
+
+                BorderVid1.Background = new SolidColorBrush(Colors.Red);
+                BorderVid2.Background = new SolidColorBrush(Colors.Red);
+                BorderVid3.Background = new SolidColorBrush(Colors.Red);
+                BorderVid4.Background = new SolidColorBrush(Colors.Red);
+                BorderVid5.Background = new SolidColorBrush(Colors.Red);
+                BorderVid6.Background = new SolidColorBrush(Colors.Red);
+                BorderVid7.Background = new SolidColorBrush(Colors.Red);
+                BorderVid8.Background = new SolidColorBrush(Colors.Red);
+
+            }
+            else
+            {
+                BorderImg1.Background = new SolidColorBrush(Colors.Green);
+                BorderImg2.Background = new SolidColorBrush(Colors.Green);
+                BorderImg3.Background = new SolidColorBrush(Colors.Green);
+                BorderImg4.Background = new SolidColorBrush(Colors.Green);
+                BorderImg5.Background = new SolidColorBrush(Colors.Green);
+                BorderImg6.Background = new SolidColorBrush(Colors.Green);
+                BorderImg7.Background = new SolidColorBrush(Colors.Green);
+                BorderImg8.Background = new SolidColorBrush(Colors.Green);
+
+                BorderVid1.Background = new SolidColorBrush(Colors.Green);
+                BorderVid2.Background = new SolidColorBrush(Colors.Green);
+                BorderVid3.Background = new SolidColorBrush(Colors.Green);
+                BorderVid4.Background = new SolidColorBrush(Colors.Green);
+                BorderVid5.Background = new SolidColorBrush(Colors.Green);
+                BorderVid6.Background = new SolidColorBrush(Colors.Green);
+                BorderVid7.Background = new SolidColorBrush(Colors.Green);
+                BorderVid8.Background = new SolidColorBrush(Colors.Green);
+            }
+        }
+        private void AnimarMiniaturaVideos(MediaElement mediaElement)
+        {
+            
+                videoElement1.LoadedBehavior = MediaState.Stop;
+                videoElement2.LoadedBehavior = MediaState.Stop;
+                videoElement3.LoadedBehavior = MediaState.Stop;
+                videoElement4.LoadedBehavior = MediaState.Stop;
+
+                videoElement5.LoadedBehavior = MediaState.Stop;
+                videoElement6.LoadedBehavior = MediaState.Stop;
+                videoElement7.LoadedBehavior = MediaState.Stop;
+                videoElement8.LoadedBehavior = MediaState.Stop;
+
+                videoElement1.LoadedBehavior = MediaState.Play;
+                videoElement2.LoadedBehavior = MediaState.Play;
+                videoElement3.LoadedBehavior = MediaState.Play;
+                videoElement4.LoadedBehavior = MediaState.Play;
+
+                videoElement5.LoadedBehavior = MediaState.Play;
+                videoElement6.LoadedBehavior = MediaState.Play;
+                videoElement7.LoadedBehavior = MediaState.Play;
+                videoElement8.LoadedBehavior = MediaState.Play;
+
+                Thread.Sleep(100);
+
+                videoElement1.LoadedBehavior = MediaState.Stop;
+                videoElement2.LoadedBehavior = MediaState.Stop;
+                videoElement3.LoadedBehavior = MediaState.Stop;
+                videoElement4.LoadedBehavior = MediaState.Stop;
+
+                videoElement5.LoadedBehavior = MediaState.Stop;
+                videoElement6.LoadedBehavior = MediaState.Stop;
+                videoElement7.LoadedBehavior = MediaState.Stop;
+                videoElement8.LoadedBehavior = MediaState.Stop;
+
+                mediaElement.LoadedBehavior = MediaState.Play;
+            
+
+        }
+
+        private void ResetarImagem_Click(object sender, RoutedEventArgs e)
+        {
+            fullscreenWindow.videoPlayer.Source = null;
+        }
     }
+
+
 }
