@@ -25,7 +25,12 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <ComboBox x:Name="selectMonitors" Grid.Column="1" HorizontalAlignment="Right" Margin="357,22,15,0"   VerticalAlignment="Top" Width="120" SelectionChanged="selectMonitors_SelectionChanged" Height="22"/>
-        <Button x:Name="AtualizarListaTelas" Grid.Column="1" Content="Atualizar" HorizontalAlignment="Right" Margin="0,24,180,0" VerticalAlignment="Top" Click="AtualizarListaTelas_Click" Width="63" Height="20"/>
+        <GroupBox Grid.ColumnSpan="2" Header="Monitores:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="220" Height="51" Margin="0,0,5,0">
+            <Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="210">
+                <ComboBox x:Name="selectMonitors" HorizontalAlignment="Right" Margin="0,5,10,0"   VerticalAlignment="Top" Width="120" SelectionChanged="selectMonitors_SelectionChanged" Height="22"/>
+                <Button x:Name="AtualizarListaTelas" Content="Atualizar" HorizontalAlignment="Right" Margin="0,6,140,0" VerticalAlignment="Top" Click="AtualizarListaTelas_Click" Width="63" Height="20"/>
+            </Grid>
+        </GroupBox>
+        <Label x:Name="AtualizacaoDisponivel" Content="Existe uma atualização disponível! - Baixar atualização" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,15,0,0" Foreground="#FFF70808" FontSize="18" Cursor="Hand" MouseDown="atualizacaoDisponivel_MouseDown" Visibility="Hidden"/>
     </Grid>
 </Window>

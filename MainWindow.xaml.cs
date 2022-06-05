@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
+
+using System.ComponentModel;
+using System.Net.Http;
+using System.Net;
 using System.Threading;
 
 using System.Collections.Generic;
@@ -30,8 +35,10 @@ namespace Assistente_de_Apresentações
         Boolean isPlayng = false;
 
         FullscreenWindow fullscreenWindow = new FullscreenWindow();
-       
-       
+        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.1.zip?raw=true";
+
+
+
 
 
     public MainWindow()
@@ -82,13 +89,13 @@ namespace Assistente_de_Apresentações
         {
             GetTelas();
 
-            Select_Video();
-
-
-
-           
+            //Select_Video();
 
             
+            GetUpdate();
+
+
+
             if (Screen.AllScreens.Length > 1)
             {
 
@@ -100,43 +107,34 @@ namespace Assistente_de_Apresentações
             
             
         }
-        private void GetScreens()
+        async void GetUpdate()
         {
-           
+              HttpClient client = new HttpClient();
+
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(newVersionUrl);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                AtualizacaoDisponivel.Visibility = Visibility.Visible;
 
 
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
+                
+            }
         }
+       
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             fullscreenWindow.Close();
 
         }
-
-        private void PlayPauseBtn_Event(object sender, RoutedEventArgs e)
-        {
-            if (isPlayng)
-            {
-                fullscreenWindow.videoPlayer.Position += TimeSpan.FromSeconds(10);
-                isPlayng = false;
-            }
-            else
-            {
-                isPlayng = true;
-                fullscreenWindow.videoPlayer.Play();
-            }
-        }
-
-        private void PlayPauseBtn_Event(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-
-
-
-        
-        
-
 
         private void Select_View_Image(Image imageBox)
         {
@@ -230,6 +228,12 @@ namespace Assistente_de_Apresentações
         private void MediaTimeChanged(object sender, EventArgs e)
         {
             timelineSlider.Value = fullscreenWindow.videoPlayer.Position.TotalMilliseconds;
+        }
+
+        private void atualizacaoDisponivel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("cmd", "/c start "+ newVersionUrl);
+
         }
     }
 }
