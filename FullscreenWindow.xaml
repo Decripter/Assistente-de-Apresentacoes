@@ -1,0 +1,12 @@
+﻿<Window x:Class="Assistente_de_Apresentações.FullscreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assistente_de_Apresentações"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800" WindowStartupLocation="Manual" WindowStyle="None" Loaded="Window_Loaded" Background="Black">
+    <Grid>
+        <MediaElement Name="videoPlayer" LoadedBehavior="Manual" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</Window>
