@@ -34,7 +34,7 @@ namespace Assistente_de_Apresentações
         Boolean isPlayng = false;
 
         FullscreenWindow fullscreenWindow = new();
-        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.4.zip?raw=true";
+        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.5.zip?raw=true";
         readonly String defaultMedia = "media.png";
 
 
@@ -170,8 +170,10 @@ namespace Assistente_de_Apresentações
             }
             if(!isPlayng & fullscreenWindow.videoPlayer.Source != null)
             {
+                fullscreenWindow.Focus();
                 fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Play;
                 isPlayng = !isPlayng;
+
 
                 PlayPauseButton.Content = "Pause";
             }
@@ -247,6 +249,7 @@ namespace Assistente_de_Apresentações
             if (ExibirEditarCheckbox.IsChecked == true & media.Source != new Uri(defaultMedia, UriKind.Relative))
             {
                 fullscreenWindow.videoPlayer.Source = media.Source;
+                fullscreenWindow.Focus();
                 fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Play;
 
             }
