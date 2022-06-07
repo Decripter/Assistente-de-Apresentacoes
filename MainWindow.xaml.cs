@@ -34,7 +34,8 @@ namespace Assistente_de_Apresentações
         Boolean isPlayng = false;
 
         FullscreenWindow fullscreenWindow = new();
-        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.5.zip?raw=true";
+
+        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.6.zip?raw=true";
         readonly String defaultMedia = "media.png";
 
 
@@ -155,10 +156,7 @@ namespace Assistente_de_Apresentações
 
        
 
-        private void Midia_1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Select_Image();
-        }
+        
 
         private void PlayPause(object sender, RoutedEventArgs e)
         {
@@ -278,9 +276,14 @@ namespace Assistente_de_Apresentações
         {
             MediaElement media = (MediaElement)sender;
 
-            if (ExibirEditarCheckbox.IsChecked == true & media.Source != new Uri(defaultMedia, UriKind.Relative))
+            if (ExibirEditarCheckbox.IsChecked == true & media.Source != new Uri(defaultMedia, UriKind.Relative) )
             {   
                 fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Stop;
+                fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Play;
+                Thread.Sleep(100);
+                fullscreenWindow.videoPlayer.LoadedBehavior = MediaState.Stop;
+                PlayPauseButton.Content = "Play";
+                isPlayng = false;
                 fullscreenWindow.videoPlayer.Source = media.Source;
                 AnimarMiniaturaVideos(media);
             }
