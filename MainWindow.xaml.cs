@@ -30,16 +30,23 @@ namespace Assistente_de_Apresentações
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        public String VerssaoAtual = "1.6";
+        public String VerssaoFutura = "1.7";
         Boolean isPlayng = false;
 
         FullscreenWindow fullscreenWindow = new();
 
-        public String newVersionUrl = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%201.6.zip?raw=true";
+        public String newVersionUrl1 = "https://github.com/Decripter/Assistente-de-Apresentacoes/blob/master/Deploy/Assistente%20de%20Apresenta%C3%A7%C3%B5es%20";
+        public String newVersionUrl2 = ".zip?raw=true";
         readonly String defaultMedia = "media.png";
 
 
-
+        public String Atualizacao()
+        {
+            String urlAtualizacao = newVersionUrl1+VerssaoFutura+newVersionUrl2;
+            //System.Windows.Forms.MessageBox.Show(urlAtualizacao);
+            return urlAtualizacao;
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -89,9 +96,9 @@ namespace Assistente_de_Apresentações
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GetTelas();
+            this.Title = "Assistente de Apresentações - "+ VerssaoAtual;
             ChangeBorderColors();
-
-            //fullscreenWindow.Show();
+            //fullscreenWindow.Show(); //APENAS PARA TESTES!!!
 
             mediaElement1.Source = new Uri(defaultMedia, UriKind.Relative);
             mediaElement2.Source = new Uri(defaultMedia, UriKind.Relative);
@@ -132,7 +139,7 @@ namespace Assistente_de_Apresentações
             try
             {
 
-                HttpResponseMessage response = await client.GetAsync(newVersionUrl);
+                HttpResponseMessage response = await client.GetAsync(Atualizacao());
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
 
@@ -235,7 +242,7 @@ namespace Assistente_de_Apresentações
 
         private void atualizacaoDisponivel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Process.Start("cmd", "/c start " + newVersionUrl);
+            System.Diagnostics.Process.Start("cmd", "/c start " + Atualizacao());
 
         }
 

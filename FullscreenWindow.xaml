@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assistente_de_Apresentações"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800" WindowStartupLocation="Manual" WindowStyle="None" Loaded="Window_Loaded" Background="Black">
+        Title="Window1" Height="450" Width="800" WindowStartupLocation="Manual" AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded" Background="Black">
     <Grid>
-        <MediaElement Name="videoPlayer" LoadedBehavior="Manual" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <MediaElement Name="videoPlayer" LoadedBehavior="Manual" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </Window>
